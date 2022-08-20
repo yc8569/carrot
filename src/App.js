@@ -1,24 +1,46 @@
-import React from "react";
-import { Routes, Route ,BrowserRouter} from "react-router-dom";
+import Router from "./Router";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { defaultTheme } from "./shared/theme";
+import reset from "./shared/reset.css";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { carrotLoginStatus, getCarrotUserInfo } from "./redux/modules/user";
+import { getToken } from "./shared/localStorage";
 
-//pages
-// import LoginForm from "./pages/LoginForm";
-import MainPage from "./pages/MainPage";
+function App() {
+    const dispatch = useDispatch();
 
-const App =()=> {
+    useEffect(() => {
+        const token = getToken();
+
+        if (token) { // 토큰이 있는지 체크
+            dispatch(carrotLoginStatus(true));
+            dispatch(getCarrotUserInfo());
+        } else {
+            dispatch(carrotLoginStatus(false));
+        }
+    }, [dispatch]);
+
     return (
-        <div className="App">
-          <BrowserRouter>
-             <Routes>
-
-            <Route path="/" element={<MainPage />} />
-            {/* <Route path="/login" element={<LoginForm />} /> */}
-            
-        </Routes>
-          </BrowserRouter>
-     
-    </div>
+        <ThemeProvider theme={defaultTheme}>
+            <GlobalStyle />
+            <Router />
+        </ThemeProvider>
     );
 }
 
+const GlobalStyle = createGlobalStyle`
+${reset}; // Reset CSS
+
+body, button, input, textarea {
+  color: #444444;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+`;
+
 export default App;
+
