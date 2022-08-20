@@ -28,17 +28,17 @@ function Login () {
             password
         };
 
-        login(data)
-            .then((response) => {
-                alert("로그인 성공!");
-                saveToken(response.data.token);
-                dispatch(carrotLoginStatus(true));
-                dispatch(getCarrotUserInfo());
-                navigate("/main");
-            })
-            .catch((err) => {
-                alert("로그인 실패!");
-            });
+        // login(data)
+        //     .then((response) => {
+        //         alert("로그인 성공!");
+        //         saveToken(response.data.token);
+        //         dispatch(carrotLoginStatus(true));
+        //         dispatch(getCarrotUserInfo());
+        //         navigate("/main");
+        //     })
+        //     .catch((err) => {
+        //         alert("로그인 실패!");
+        //     });
     }
 
     const onChange = (e) => { // 버튼 활성화
@@ -57,6 +57,7 @@ function Login () {
             <Content>
                 <img src={ require('../static/logo.png') }/>
                 <Form onSubmit={confirmLogin}>
+               
                     <input type="text" placeholder="휴대폰 번호 (- 없이 숫자만 입력)" autoComplete="phone" ref={ref.phone} onChange={onChange} />
                     <input type="password" placeholder="비밀번호" autoComplete="current-password" ref={ref.password} onChange={onChange} />
                     <Button isActive={btnState}>로그인</Button>
