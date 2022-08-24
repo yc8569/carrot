@@ -119,8 +119,7 @@ const initialState =  {
          
          SetForm(initialState);
          
-         // window.location.reload();
-         // console.log(fileImgUp);
+       
 
        };
 
