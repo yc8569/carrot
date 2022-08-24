@@ -1,6 +1,6 @@
 // import "../public/css/listForm.css";
 import styled from "styled-components";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -20,7 +20,7 @@ console.log(boardList);
     dispatch(loadMainposts());
   }, [boardList,dispatch]);
 
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
 
 // const mainPostList = [
@@ -54,7 +54,11 @@ console.log(boardList);
     <div className="MainListBox">
     {mainPostList.map((list, index) => (
         <div key={index}>
-            <CardBox className="card">
+            <CardBox className="card"
+            onClick={()=>{
+              navigate('/detail');
+            }}
+            >
               
               
               <div

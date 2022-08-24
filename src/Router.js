@@ -5,6 +5,7 @@ import PostWritePage from "./pages/PostWritePage";
 import Start from "./pages/Start";
 import RegisterLocation from "./pages/RegisterLocation";
 import Register from "./pages/Register";
+import DetailPage from "./pages/DetailPage";
 
 function Router() {
     return (
@@ -16,6 +17,7 @@ function Router() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/main" element={<MainPage />} />
                 <Route path="/postwrite" element={<PostWritePage />} />
+                <Route path="/detailpage/:id" element={<DetailPage />} />
 
             </Routes>
         </BrowserRouter>

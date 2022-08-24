@@ -67,6 +67,20 @@ export const carrotPost = (formData) => {
   };
 };
 
+// 게시물 상세 조회
+export const carrotGetPost = (postId) => {
+  return async function (dispatch) {
+    await instance
+      .get(`api/post/${postId}`)
+      .then((res) => {
+        // console.log(res.data);
+        dispatch(getLoadPost(res.data.detailPost));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
 
 const postSlice = createSlice({
