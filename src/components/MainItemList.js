@@ -56,6 +56,7 @@ console.log(boardList);
         <div key={index}>
             <CardBox className="card">
               
+              
               <div
                 style={{ display: "flex" }}>
                 <Img src={list.imageUrl} />
@@ -93,7 +94,8 @@ console.log(boardList);
                         fontWeight: "bold",
                       }}
                     >
-                      {Number(list.price).toLocaleString("ko-KR")}원
+                      {list.price}원
+                      {/* {Number(list.price).toLocaleString("ko-KR")}원 */}
                     </span>
                   </TradeState>
                   <span>{list.category}</span>

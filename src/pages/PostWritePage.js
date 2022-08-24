@@ -29,12 +29,12 @@ const PostWritePage = () => {
       
   const [fileImgUp, setImage] = useState();    //보내줄 파일을 저장해줄 state
   
-  
+  // 카테고리주석이였음
 const initialState =  {
    // post_id : 1,
    title: "제목1",
    contents:"내용1",
-   // category:"카테고리1",
+   category:"카테고리1",    
    price : "10000",
    imageUrl: "/images/1.png",
    
@@ -118,7 +118,7 @@ const initialState =  {
          dispatch(carrotPost(formData));
          
          SetForm(initialState);
-         
+         navigate('/main');
        
 
        };
