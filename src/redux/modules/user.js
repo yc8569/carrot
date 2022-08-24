@@ -7,16 +7,16 @@ export const carrotLoginStatus = (status) => {
     }
 };
 
-export const getCarrotUserInfo = () => {
-    // return async function (dispatch) {
-    //     try {
-    //         const response = await loadProfile();
-    //         dispatch(setUser(response.data.user));
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // }
-}
+// export const getCarrotUserInfo = () => {
+//     return async function (dispatch) {
+//         try {
+//             const response = await loadProfile();
+//             dispatch(setUser(response.data.user));
+//         } catch (err) {
+//             console.log(err);
+//         }
+//     }
+// }
 
 export const backupCarrotUserProfile = (data) => {
     return async function (dispatch) {

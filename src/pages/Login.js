@@ -20,32 +20,34 @@ function Login () {
 
     const confirmLogin = (e) => {
         e.preventDefault();
-        const phoneNum = ref.phone.current.value;
+        const userPhoneNum = ref.phone.current.value;
         const password = ref.password.current.value;
 
         const data = {
-            phoneNum,
+          userPhoneNum,
             password
         };
-
-        // login(data)
-        //     .then((response) => {
-        //         alert("로그인 성공!");
-        //         saveToken(response.data.token);
-        //         dispatch(carrotLoginStatus(true));
-        //         dispatch(getCarrotUserInfo());
-        //         navigate("/main");
-        //     })
-        //     .catch((err) => {
-        //         alert("로그인 실패!");
-        //     });
+        console.log(data)
+        login(data)
+            .then((response) => {
+          console.log(response)
+                
+                saveToken(response.data);
+                dispatch(carrotLoginStatus(true));
+                // dispatch(getCarrotUserInfo());
+                alert("로그인 성공!");
+                navigate("/main");
+            })
+            .catch((err) => {
+                alert("로그인 실패!");
+            });
     }
 
     const onChange = (e) => { // 버튼 활성화
-        const phoneNum = ref.phone.current.value;
+        const userPhoneNum = ref.phone.current.value;
         const password = ref.password.current.value;
 
-        if (phoneNum.length > 0 && password.length > 0) {
+        if (userPhoneNum.length > 0 && password.length > 0) {
             setBtnState(true);
         } else {
             setBtnState(false);

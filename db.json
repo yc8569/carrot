@@ -1,0 +1,42 @@
+
+{
+
+
+    
+  "postList": 
+   [
+       {
+       "post_id" : 1,
+       "title": "제목1",
+       "content":"내용1",
+       "category":"카테고리1",
+       "price" : "10000",
+       "imageUrl":"/images/1.png",
+       "modifiedAt":null
+       
+       },
+       {
+           "post_id" : 2,
+           "title": "제목2",
+           "content":"내용2",
+           "category":"카테고리2",
+           "price" : "20000",
+           "imageUrl":"/images/2.png",
+           "modifiedAt":null
+       
+       },
+       {
+           "post_id" : 3,
+           "title": "제목3",
+           "content":"내용3",
+           "category":"카테고리3",
+           "price" : "310000",
+           "imageUrl":"/images/3.png",
+           "modifiedAt":null
+           
+       }
+        ]
+   
+
+}
+

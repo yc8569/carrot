@@ -1,7 +1,7 @@
 import Router from "./Router";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { defaultTheme } from "./shared/theme";
-import reset from "./shared/reset.css";
+// import reset from "./shared/reset.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { carrotLoginStatus, getCarrotUserInfo } from "./redux/modules/user";
@@ -15,7 +15,7 @@ function App() {
 
         if (token) { // 토큰이 있는지 체크
             dispatch(carrotLoginStatus(true));
-            dispatch(getCarrotUserInfo());
+            // dispatch(getCarrotUserInfo());
         } else {
             dispatch(carrotLoginStatus(false));
         }
@@ -23,24 +23,24 @@ function App() {
 
     return (
         <ThemeProvider theme={defaultTheme}>
-            <GlobalStyle />
+            
             <Router />
         </ThemeProvider>
     );
 }
 
-const GlobalStyle = createGlobalStyle`
-${reset}; // Reset CSS
+// const GlobalStyle = createGlobalStyle`
+// ${reset}; // Reset CSS
 
-body, button, input, textarea {
-  color: #444444;
-}
+// body, button, input, textarea {
+//   color: #444444;
+// }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-`;
+// a {
+//   text-decoration: none;
+//   color: inherit;
+// }
+// `;
 
 export default App;
 

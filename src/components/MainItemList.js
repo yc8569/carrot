@@ -4,20 +4,21 @@ import styled from "styled-components";
 
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { loadMainposts } from "../redux/modules/post";
+import { loadMainposts } from "../redux/modules/post";
 
 
 function MainItemList() {
-//   const dispatch = useDispatch();
-//   const [boardList, setBoardList] = useState();
+  const dispatch = useDispatch();
+  const [boardList, setBoardList] = useState();
 
   const mainPostList = useSelector((state) => state.post.postList);
 //   const user = useSelector((state) => state.user);
 console.log(mainPostList);
+console.log(boardList);
 
-//   React.useEffect(() => {
-//     dispatch(loadMainposts());
-//   }, [boardList, dispatch]);
+  React.useEffect(() => {
+    dispatch(loadMainposts());
+  }, [boardList,dispatch]);
 
 //   const navigate = useNavigate();
 
@@ -54,11 +55,20 @@ console.log(mainPostList);
     {mainPostList.map((list, index) => (
         <div key={index}>
             <CardBox className="card">
-              <div
-                style={{ display: "flex" }}
               
-              >
+              <div
+                style={{ display: "flex" }}>
                 <Img src={list.imageUrl} />
+                <span
+                 style={{
+                  fontSize: "13px",
+                  padding: "5px",
+                  fontWeight: "bold",
+                }}
+                >{list.post_id}</span>
+               
+                <span>{list.modifiedAt}</span>
+                
                 <TextArea>
                   <span
                     style={{
@@ -86,6 +96,7 @@ console.log(mainPostList);
                       {Number(list.price).toLocaleString("ko-KR")}원
                     </span>
                   </TradeState>
+                  <span>{list.category}</span>
                 </TextArea>
               </div>
           
@@ -104,7 +115,9 @@ console.log(mainPostList);
 }
 
 const CardBox = styled.div`
+  background-color: red;
   display: flex;
+  heigth: 100px;
   padding: 20px;
   justify-content: space-between;
   border-bottom: 1px solid #dddddd;

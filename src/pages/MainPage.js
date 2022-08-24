@@ -1,7 +1,7 @@
 import MainItemList from '../components/MainItemList';
 import Layout from '../components/Layout';
 import React, { useState } from "react";
-
+import HaederBack from "../components/HeaderBack";
 import { useNavigate } from "react-router-dom";
 
 // import { useSelector } from 'react-redux';
@@ -15,7 +15,7 @@ function MainPage () {
   return (
     <Layout>
     <div className="Wrap">
-      
+      <HaederBack/>
       <div className="TMenuBar"> 
         <p>유저정보</p>
         

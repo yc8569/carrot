@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 // import { deleteCookie } from "../shared/Cookie";
 import { Link } from "react-router-dom";
 // import apis from "../api/index";
+import { removeToken } from "../shared/localStorage";
 
 const Header = () => {
  
@@ -13,7 +14,11 @@ const Header = () => {
 
   
 
-
+const onLogout =()=>{
+  // localStorage.clear();
+  removeToken();
+  navigate('/');
+}
 
 
   return (
@@ -25,8 +30,13 @@ const Header = () => {
           navigate('/main')
         }}>HOME</button>
       
-         <button 
+         <button onClick={()=>{
+          onLogout()
+         }}
        >로그아웃</button>
+       <button onClick={()=>{
+        navigate('/postwrite')
+       }}>나의당근올리기</button>
     </StContainer>
   );
 };
