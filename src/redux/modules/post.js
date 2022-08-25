@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import { instance } from "../../shared/axios";
 
 // const initialState = {
@@ -67,14 +68,62 @@ export const carrotPost = (formData) => {
   };
 };
 
-// 게시물 상세 조회
+// // 게시물 상세 조회
 export const carrotGetPost = (postId) => {
   return async function (dispatch) {
     await instance
-      .get(`api/post/${postId}`)
+      .get(`posts/${postId}`)
       .then((res) => {
-        // console.log(res.data);
-        dispatch(getLoadPost(res.data.detailPost));
+        console.log(res.data);
+        dispatch(getLoadPost(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+//게시물삭제
+// export const deletePost = (postId) => {
+//   console.log("넘오옴",postId)
+//   return async function (dispatch) {
+//     await instance
+//       .delete(`posts/${postId}`,postId)
+//       .then((re) => {
+//         console.log(re)
+//         // dispatch(roadPosts(re.data));
+        
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   };
+// };
+
+
+export const deletePost = (postId)=>{
+  const token = localStorage.getItem("token");
+  axios.delete(`http://3.38.149.21/posts/${postId}`,{
+    headers:{
+      'Content-Type' : 'applicatioin/json',
+          'Authorization' : token,
+    }
+  }).then((response)=>{
+    console.log(response);
+  }).catch((error)=>{
+    console.log(error);
+  })
+}
+
+
+// 게시물 수정
+export const updatePost = (modifyPostInfo) => {
+  return async function (dispatch) {
+    await instance
+      .put(`/posts/${modifyPostInfo.postId}`, modifyPostInfo)
+      .then((re) => {
+        // dispatch(getLoadPost(re.data));
+        // navigate("/main");
       })
       .catch((err) => {
         console.log(err);

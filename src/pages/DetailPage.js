@@ -1,14 +1,11 @@
 
-
-
-
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-
-// import { carrotGetPost } from "../redux/modules/post";
+import {getNick} from "../shared/localStorage";
+ 
+import { carrotGetPost, deletePost } from "../redux/modules/post";
 
 
 
@@ -19,14 +16,20 @@ const DetailPage = () => {
   const dispatch = useDispatch();
   // //파라미터로 postID값 가져오기
   const { id } = useParams();
-  const { title, price, category } =
-    useSelector((state) => state.post.list);
+  const postList =
+    useSelector((state) => state.post.post);
+    console.log(postList)
+//     const detail_List = postList.filter((list)=> list.post_id == id)
+// console.log(detail_List)
 
   // const currentUser = getNick();
+  // const currentUser = myname;
+
+  // console.log()
   // const sameUser = nickname === currentUser;
   //console.log(sameUser);
 
-
+const qqq = true;
 
 
 
@@ -50,7 +53,7 @@ const DetailPage = () => {
               lineHeight: "0.5",
             }}
             onClick={() => navigate(-1)}
-          ></div>
+          >뒤로가기</div>
           <div
             variant="text"
             style={{
@@ -62,12 +65,12 @@ const DetailPage = () => {
               lineHeight: "2.3",
             }}
             onClick={() => navigate("/main")}
-          ></div>
+          >메인</div>
         </Div>
         
         
         
-        {{id} ? (
+        {/* {qqq ? ( */}
           <React.Fragment>
             <button
               variant="text"
@@ -77,18 +80,16 @@ const DetailPage = () => {
                 lineHeight: "3",
                 backgroundColor: "transparent",
               }}
-              onClick={openModal}
+              onClick={()=>{
+                deletePost(postList.post_id);
+                // navigate('/main');
+              }}
             >
-              ***
+              삭제하기
             </button>
-            {/* <Modal
-              // postId={postId}
-              open={modalOpen}
-              close={closeModal}
-              header="수정 및 삭제하기"
-            ></Modal> */}
+            
           </React.Fragment>
-        ) : (
+        {/* ) : ( */}
           <button
             variant="text"
             style={{
@@ -101,7 +102,7 @@ const DetailPage = () => {
           >
             ***
           </button>
-        )}
+        {/* )} */}
 
 
         
@@ -109,32 +110,33 @@ const DetailPage = () => {
 
       <ImageWrap>
         이미지사진
-        {/* <img
-          src={image}
-          alt={id}
+        {/* <Img src={postList.imageUrl} /> */}
+        <img
+          src={postList.imageUrl}
+          // alt={id}
           style={{
             backgroundSize: "cover",
             backgroundPosition: "center",
             height: "-webkit-fill-available",
             width: "inherit",
           }}
-        /> */}
+        />
       </ImageWrap>
       <Div style={{ height: "100%", top: "0" }}>
         <ContentWrap>
           <NickName>
-            <AccountCircleIcon fontSize="large" />
+            {/* <AccountCircleIcon fontSize="large" /> */}
             닉네임
             {/* {nickname} */}
           </NickName>
-          {/* <Title>{title}</Title> */}
-          <Title>타이틀</Title>
+          <Title>{postList.title}</Title>
           <ItemArea FS="1.0rem">
-            {/* {category}&nbsp;&nbsp;&nbsp;{timestamp}&nbsp;&nbsp;올림 */}
-            카테고리
+            {postList.category}
+            {/* &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;올림 */}
+           
           </ItemArea>
-          {/* <ItemArea FS="1.3rem">{comment}</ItemArea> */}
-          <ItemArea FS="1.3rem">코멘트</ItemArea>
+          <ItemArea FS="1.3rem">{postList.comments}</ItemArea>
+          
         </ContentWrap>
         <div>
           <HeartValue>관심 0</HeartValue>
@@ -143,11 +145,9 @@ const DetailPage = () => {
           <Footer>
             <div>
               <Price>
-                <IconButton>
-                  <FavoriteBorderOutlinedIcon fontSize="large" />
-                </IconButton>
-                {/* {price}원 */}
-                10,000원
+              
+                {postList.price}원
+                
               </Price>
             </div>
             <div>
@@ -161,8 +161,27 @@ const DetailPage = () => {
                   borderRadius: "5px",
                   marginRight: "10px",
                 }}
+                onClick={()=>{
+                  alert("채팅하는거 안보여줄까야")
+                }}
               >
                 채팅하기
+              </button>
+              <button
+                style={{
+                  fontSize: "15px",
+                  color: "white",
+                  backgroundColor: "#FF8A3D",
+                  width: "100px",
+                  height: "3em",
+                  borderRadius: "5px",
+                  marginRight: "10px",
+                }}
+                onClick={()=>{
+                  navigate(`/post/edit/${postList.post_id}`);
+                }}
+              >
+                수정하기
               </button>
             </div>
           </Footer>

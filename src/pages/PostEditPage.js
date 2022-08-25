@@ -1,3 +1,330 @@
+// import {React, useState} from "react";
+// import styled from "styled-components";
+// import { Link, useNavigate, useParams } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import { updatePost } from "../redux/modules/post";
+// import { carrotGetPost } from "../redux/modules/post";
+// import { useEffect } from "react";
+// import {Card, Image} from 'react-bootstrap';
+
+// // import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+
+// const PostEditPage = () => {
+//   const dispatch = useDispatch();
+//   const navigate = useNavigate();
+//   const { id } = useParams();
+//   const [fileImage, setFileImage] = useState("");  // 미리보기스테이트
+//   const Detail = useSelector((state) => state.post.post);
+//   const [enteredNum, setEnterdNum] = useState();
+//   const defaultImage = Detail.imageUrl;
+//   const defaultTitle = Detail.title;
+//   const defaultPrice = Detail.price;
+//   const defaultComment = Detail.contents;
+
+
+
+//   //이미지 미리보기
+// //   const [image, setImage] = React.useState("");
+// //   //서버에 보내는 이미지 url
+
+// //   const [imageUrl, setImageUrl] = React.useState("");
+
+//   const [title, setTitle] = useState(defaultTitle);
+
+//   const [price, setPrice] = useState();
+
+//   const [content, setContent] = useState(defaultComment);
+
+
+
+
+
+
+//   const changeTitle = (e) => {
+//     setTitle(e.target.value);
+//     console.log(e.target.value)
+//   };
+
+//   const changePrice = (e) => {
+//     setPrice(e.target.value);
+//     console.log(e.target.value)
+
+
+//     let value = e.target.value;
+//    value = Number(value.replaceAll(",", ""));
+//    if (isNaN(value)) {
+//      //NaN인지 판별
+//      value = 0;
+//    } else {
+//      setEnterdNum(value.toLocaleString("ko-KR"));
+//    }
+
+
+
+
+
+//   };
+
+//   const changeContent = (e) => {
+//     setContent(e.target.value);
+//     console.log(e.target.value)
+//   };
+
+//   const changeImageUrl = (e) => {
+//     setFileImage(URL.createObjectURL(e.target.files[0]));  //미이보기기능
+
+
+//     setImageUrl(e.target.files[0]);
+//     console.log(e.target.files[0])
+//   };
+
+//   const submitHandler = () => {
+
+
+
+
+
+
+
+
+
+
+//     // if (imageUrl === "" || title === "" || content === "" || price === "") {
+//     //   alert("모든 사항을 기입해주세요.");
+//     //   return;
+//     // } else {
+//     //   dispatch(
+//     //     updatePost(id, {
+//     //       title: title,
+
+//     //       price: price,
+//     //       comment: content,
+//     //       file: imageUrl,
+//     //     })
+//     //   );
+//     //   //console.log(imageUrl)
+//     //   window.location.href = "/";
+//     // }
+//   };
+
+
+//   useEffect(() => {
+//     dispatch(carrotGetPost(id));
+//   }, []);
+
+//   return (
+//     <PostCont>
+//       <HeaderNav>
+//         <Link to="/">
+//           <HeaderBtn>
+           
+//           </HeaderBtn>
+//         </Link>
+//         <Title>중고거래 글쓰기</Title>
+//         {/* <Link to="/main"> */}
+//         <HeaderBtn onClick={submitHandler} style={{ color: "#FF8A3C" }}>
+//           완료
+//         </HeaderBtn>
+//         {/* </Link> */}
+//       </HeaderNav>
+
+//       <FormBody id="postForm" name="postForm">
+//         <Div>
+//           <label htmlFor="image">
+//           <Card>
+//                 {!fileImage && <p style={{paddingTop:"15px"}}>이미지 미리보기💾</p>}
+//                 <Image
+//                 //  alt="이미지 미리보기💾"
+//                  accept="image/*"
+//                  src={fileImage}
+//                  rounded={true}
+//                />
+//               </Card>
+//             <AddBtn>
+//               <p sx={{ fontSize: "40px" }} >수정할사진</p>
+//               <input
+              
+//                 id="image"
+//                 name="image"
+//                 type="file"
+//                 style={{ display: "none" }}
+//                 onChange={(e) => {
+//                   changeImageUrl(e);
+//                 //   encodeFileToBase64(e.target.files[0]);
+//                 }}
+//               ></input>
+//             </AddBtn>
+//           </label>
+
+
+//           {/* <div style={{ width: "120px", height: "120px", margin: "10px" }}>
+//             {image && (
+//               <img
+//                 src={image}
+//                 alt="preview-img"
+//                 style={{
+//                   width: "100%",
+//                   height: "100%",
+//                   backgroundSize: "cover",
+//                 }}
+//               />
+//             )}
+//           </div> */}
+
+          
+//         </Div>
+//         <DetailCont>
+//           <Input
+//             type="text"
+//             id="title"
+//             name="title"
+//             placeholder="글 제목"
+//             onChange={changeTitle}
+//             defaultValue={defaultTitle}
+//           />
+         
+//           <Input
+//             type="text"
+//             id="price"
+//             name="price"
+//             // placeholder="₩"
+//             onChange={changePrice}
+//             // defaultValue={defaultPrice}
+//             value={enteredNum || ""}
+//           />
+//           <label htmlFor="price" />
+//         </DetailCont>
+
+//         <label htmlFor="content" />
+//         <textarea
+//           name="content"
+//           id="content"
+//           className="content"
+//           rows="10"
+//           style={{
+//             height: "70%",
+//             border: "1px solid #FAFAFA",
+//             fontSize: "20px",
+//             resize: "none",
+//             boxSizing: "border-box",
+//             padding: "10px",
+//           }}
+//           placeholder={` 게시글 내용을 작성해주세요. (가품 및 판매금지품목은 게시가 제한될 수 있어요.)`}
+//           onChange={changeContent}
+//           defaultValue={defaultComment}
+//         ></textarea>
+//       </FormBody>
+//     </PostCont>
+//   );
+// };
+// const PostCont = styled.div`
+//   width: 720px;
+//   box-sizing: border-box;
+//   flex-direction: column;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+//   border-radius: 10px;
+//   background-color: white;
+//   height: 600px;
+//   gap: 1rem;
+//   /* box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); */
+//   & > * {
+//     width: 100%;
+//   }
+// `;
+
+// const Title = styled.div`
+//   font-size: 30px;
+//   font-weight: 500;
+// `;
+// const Div = styled.div`
+//   width: 100%;
+//   display: flex;
+//   /* border-bottom: 1px solid #ddd; */
+//   /* padding: 10px 16px; */
+//   /* gap: 15px; */
+// `;
+// const FormBody = styled.form`
+//   box-sizing: border-box;
+//   flex-direction: column;
+//   width: 100%;
+//   display: flex;
+//   border-bottom: 1px solid #ddd;
+//   /* padding: 10px 16px; */
+//   /* gap: 15px; */
+// `;
+
+// const HeaderNav = styled.div`
+//   width: 100%;
+//   display: flex;
+//   align-items: center;
+//   border-bottom: 2px solid #ddd;
+//   padding: 10px;
+//   justify-content: space-between;
+// `;
+// const HeaderBtn = styled.button`
+//   border: none;
+//   background-color: white;
+//   width: 50px;
+//   height: 50px;
+//   font-size: 1rem;
+//   font-weight: 500;
+//   margin: 0 10px;
+//   border-radius: 10px;
+
+//   &:hover {
+//     background-color: #eee;
+//   }
+// `;
+
+// const AddBtn = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 120px;
+//   height: 120px;
+//   border: 1px solid #ddd;
+//   background-color: white;
+//   margin: 10px;
+
+//   /* transition: 0.5s; */
+//   cursor: pointer;
+
+//   &:hover {
+//     background-color: #212123;
+//     color: white;
+//   }
+// `;
+// // const UploadImage = styled.img`
+// //   width: 120px;
+// //   height: 120px;
+// //   background-size: cover;
+// //   margin: 10px;
+
+// //   /* background-color: #eee; */
+// //   background-image: url("https://via.placeholder.com/120");
+// // `;
+
+// const DetailCont = styled.div``;
+
+// const Input = styled.input`
+//   box-sizing: border-box;
+//   font-size: 1.1em;
+//   height: 50%;
+//   width: 100%;
+//   border: 1px solid #fafafa;
+//   padding: 15px;
+// `;
+
+// export default PostEditPage;
+
+
+
+
+
+
+
 import React from "react";
 import styled from "styled-components";
 import HeaderBack from "../components/HeaderBack";
@@ -10,7 +337,7 @@ import { carrotPost } from "../redux/modules/post";
 
 
 
-const PostWritePage = () => {
+const PostEditPage = () => {
    const navigate = useNavigate();
    const dispatch = useDispatch();
    const fileInput = useRef();
@@ -218,7 +545,7 @@ return (
  );
 }
 
-export default PostWritePage;
+export default PostEditPage;
 
 const Wrap = styled.div`
   box-sizing: border-box;
@@ -322,192 +649,3 @@ const Price = styled(Title)`
 `;
 
 
-// // 이미지 업로드
-
-// function Add() {
-
-
-
- 
-
-//   return (
-//     <Wrap>
-//       <Header>
-//         <IoIosClose
-//           size="25"
-//           onClick={() => {
-//             navigate("/main");
-//           }}
-//         />
-//         <h4>중고거래 글쓰기</h4>
-//         <h5 onClick={upload}>완료</h5>
-//       </Header>
-
-//       {/* 사진업로드 */}
-//       <Container>
-//         <File>
-//           <label htmlFor="file">
-//             <IoIosCamera className="camera" />
-//           </label>
-//           <input type="file" id="file" ref={fileInput} onChange={selectFile} />
-//           {imageSrc && <img src={imageSrc} alt="preview-img" />}
-//         </File>
-
-//         <div>
-//           <Title>
-//             <input placeholder="글 제목" ref={title_ref} />
-//           </Title>
-
-//           <Categorie>
-//             {/* <div>카테고리 선택</div> */}
-//             <select name="category" id="category" onChange={changeCategory}>
-//               <option value="none">카테고리 선택</option>
-//               <option value="디지털기기">디지털기기</option>
-//               <option value="생활가전">생활가전</option>
-//               <option value="가구&인테리어">가구/인테리어</option>
-//               <option value="유아동">유아동</option>
-//               <option value="생활&가공식품">생활/가공식품</option>
-//               <option value="유아도서">유아도서</option>
-//               <option value="스포츠/레저">스포츠/레저</option>
-//               <option value="여성패션">여성패션/잡화</option>
-//               <option value="남성패션">남성패션/잡화</option>
-//               <option value="게임&취미">게임/취미</option>
-//               <option value="뷰티&미용">뷰티/미용</option>
-//               <option value="반려동물용품">반려동물용품</option>
-//               <option value="도서&티켓&음반">도서/티켓/음반</option>
-//               <option value="기타">기타 중고물품</option>
-//               <option value="삽니다">삽니다</option>
-//             </select>
-//             {/* <IoIosArrowForward /> */}
-//           </Categorie>
-
-//           <Locate>
-//             <div>{location}</div>
-//             {/* <IoIosArrowForward /> */}
-//           </Locate>
-//         </div>
-
-//         <Price>
-//           <input
-//             type="text"
-//             placeholder="가격 [선택사항]"
-//             ref={price_ref}
-//             onChange={priceComma}
-//             value={enteredNum || ""}
-//           />
-//           <label htmlFor="price">
-//             <input type="checkbox" id="price" ref={chk_ref} />
-//             가격 제안받기
-//           </label>
-//         </Price>
-
-//         <textarea
-//           cols="40"
-//           rows="5"
-//           placeholder="올릴 게시글 내용을 작성해주세요. (가품 및 판매금지품목은 게시가 제한될 수 있어요.)"
-//           ref={content_ref}
-//         />
-//       </Container>
-//     </Wrap>
-//   );
-// }
-// const Wrap = styled.div`
-//   box-sizing: border-box;
-//   font-size: 13px;
-
-//   input {
-//     font-size: 13px;
-//   }
-
-//   textarea {
-//     margin-top: 45px;
-//     border: none;
-//     outline: none;
-//     resize: none;
-//   }
-//   textarea::placeholder {
-//     color: #dadada;
-//     font-size: 13px;
-//   }
-// `;
-// const Header = styled.header`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-
-//   padding: 16px 15px;
-//   border-bottom: 1px solid #dadada;
-
-//   h4 {
-//     font-weight: 800;
-//   }
-//   h5 {
-//     color: #ff7e36;
-//   }
-// `;
-// const Container = styled.div`
-//   padding: 0 16px;
-// `;
-
-// const File = styled.div`
-//   padding: 30px 0px;
-//   border-bottom: 1px solid #dadada;
-
-//   .camera {
-//     font-size: 35px;
-//   }
-//   label {
-//     cursor: pointer;
-//   }
-//   input[type="file"] {
-//     display: none;
-//   }
-
-//   img {
-//     width: 130px;
-//     height: 130px;
-//     margin-left: 10px;
-//     border-radius: 5px;
-//   }
-// `;
-
-// const Title = styled.div`
-//   padding: 20px 0px;
-//   border-bottom: 1px solid #dadada;
-
-//   outline: none;
-//   input {
-//     border: none;
-//     outline: none;
-//   }
-
-//   input::placeholder {
-//     color: #dadada;
-//   }
-// `;
-// const Categorie = styled(Title)`
-//   display: flex;
-//   justify-content: space-between;
-
-//   select {
-//     width: 100%;
-//     border: none;
-//     outline: none;
-//     font-size: 14px;
-//   }
-// `;
-
-// const Locate = styled(Title)`
-//   display: flex;
-//   justify-content: space-between;
-// `;
-
-// const Price = styled(Title)`
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-
-//   input[type="checkbox"] {
-//     accent-color: #ff7e36;
-//   }
-// `;

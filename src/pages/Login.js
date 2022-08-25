@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { css } from "styled-components";
 import { carrotLoginStatus, getCarrotUserInfo } from "../redux/modules/user";
 import { login } from "../shared/axios";
-import { saveToken } from "../shared/localStorage";
+import { saveToken ,setNick} from "../shared/localStorage";
 
 
 function Login () {
@@ -27,12 +27,13 @@ function Login () {
           userPhoneNum,
             password
         };
-        console.log(data)
+        // console.log(data)
         login(data)
             .then((response) => {
-          console.log(response)
+          console.log(response.data)
                 
-                saveToken(response.data);
+                saveToken(response.data.token);
+                setNick(response.data.username)
                 dispatch(carrotLoginStatus(true));
                 // dispatch(getCarrotUserInfo());
                 alert("로그인 성공!");

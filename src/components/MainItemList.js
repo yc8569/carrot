@@ -14,7 +14,7 @@ function MainItemList() {
   const mainPostList = useSelector((state) => state.post.postList);
 //   const user = useSelector((state) => state.user);
 console.log(mainPostList);
-console.log(boardList);
+
 
   React.useEffect(() => {
     dispatch(loadMainposts());
@@ -53,10 +53,10 @@ console.log(boardList);
   return (
     <div className="MainListBox">
     {mainPostList.map((list, index) => (
-        <div key={index}>
+        <div key={list.post_id}>
             <CardBox className="card"
             onClick={()=>{
-              navigate('/detail');
+              navigate(`/detailpage/${list.post_id}`);
             }}
             >
               
